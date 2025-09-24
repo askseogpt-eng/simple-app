@@ -106,6 +106,44 @@
   </div>
 </section>
 
+<section class="section section--blog" id="blog">
+  <div class="container">
+    <div class="section__intro">
+      <p class="eyebrow">Fixly.dev blog</p>
+      <h2 class="section__title">Stories, launch guides, and changelog highlights.</h2>
+      <p class="section__description">
+        Go behind the scenes with the Fixly.dev team. Learn how top developer companies ship faster, catch the latest
+        platform updates, and explore automation strategies for your next tool.
+      </p>
+    </div>
+    {% if posts %}
+      <div class="blog-grid">
+        {% for post in posts %}
+          <article class="blog-card">
+            <header class="blog-card__header">
+              <p class="blog-card__eyebrow">Published {{ post.created_at.strftime('%b %d, %Y') }}</p>
+              <h3 class="blog-card__title"><a href="{{ url_for('blog_detail', slug=post.slug) }}">{{ post.title }}</a></h3>
+            </header>
+            <p class="blog-card__excerpt">{{ post.excerpt }}</p>
+            <footer class="blog-card__footer">
+              <a class="blog-card__link" href="{{ url_for('blog_detail', slug=post.slug) }}">Read post →</a>
+            </footer>
+          </article>
+        {% endfor %}
+      </div>
+      <div class="section__cta">
+        <a class="button button--ghost" href="{{ blog_url }}">Browse all posts</a>
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <h3>Your Fixly.dev blog is waiting.</h3>
+        <p>Publish your first article to share stories, product announcements, and guides with developers everywhere.</p>
+        <a class="button button--primary" href="{{ admin_posts_url }}">Write a post</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
 <section class="section section--accent" id="platform">
   <div class="container">
     <div class="section__intro">

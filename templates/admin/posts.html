@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Fixly.dev Dashboard – Publish blog posts{% endblock %}
+
+{% block hero %}
+<section class="hero hero--dashboard">
+  <div class="container hero--dashboard__inner">
+    <div>
+      <p class="eyebrow">Creator dashboard</p>
+      <h1 class="hero__title">Share updates and guides on the Fixly.dev blog.</h1>
+      <p class="hero__description">Write your story, set an excerpt, and publish it instantly to the blog section and archive.</p>
+    </div>
+    <div class="hero__meta hero__meta--dashboard">
+      <div>
+        <strong>{{ posts|length }}</strong>
+        <span>Total posts</span>
+      </div>
+      <div>
+        <strong>{{ posts|selectattr('is_published')|list|length }}</strong>
+        <span>Published</span>
+      </div>
+    </div>
+  </div>
+  <div class="dashboard__switcher">
+    <a class="dashboard__switcher-link" href="{{ admin_tools_url }}">Manage tools</a>
+    <span aria-hidden="true">•</span>
+    <span class="dashboard__switcher-current">Manage blog</span>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="section section--dashboard">
+  <div class="container dashboard">
+    <div class="dashboard__panel">
+      <h2>Publish a new post</h2>
+      <form method="post" class="form">
+        <label class="form__field">
+          <span>Post title</span>
+          <input type="text" name="title" placeholder="How we ship 400+ developer tools" required />
+        </label>
+        <label class="form__field">
+          <span>Excerpt</span>
+          <input type="text" name="excerpt" placeholder="Optional — a short summary for the blog listing" />
+        </label>
+        <label class="form__field">
+          <span>Full content</span>
+          <textarea name="content" rows="10" placeholder="Write your article using paragraphs to separate ideas." required></textarea>
+        </label>
+        <button class="button button--primary" type="submit">Publish post</button>
+      </form>
+    </div>
+    <div class="dashboard__panel">
+      <h2>Recent posts</h2>
+      {% if posts %}
+        <ul class="dashboard__list">
+          {% for post in posts %}
+            <li class="dashboard__item">
+              <div>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.excerpt }}</p>
+                <div class="dashboard__meta">
+                  <span>Updated {{ post.created_at.strftime('%b %d, %Y') }}</span>
+                  <span>Status: {{ 'Live' if post.is_published else 'Hidden' }}</span>
+                </div>
+              </div>
+              <div class="dashboard__actions">
+                <a
+                  class="button button--ghost{% if not post.is_published %} button--disabled{% endif %}"
+                  href="{{ url_for('blog_detail', slug=post.slug) }}"
+                  {% if not post.is_published %}aria-disabled="true" tabindex="-1"{% endif %}
+                >
+                  View
+                </a>
+                <form method="post" action="{{ url_for('toggle_post', post_id=post.id) }}">
+                  <button type="submit" class="button button--secondary">
+                    {% if post.is_published %}Hide{% else %}Publish{% endif %}
+                  </button>
+                </form>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="empty-state empty-state--dashboard">
+          <h3>No posts yet.</h3>
+          <p>Share your first announcement to populate the Fixly.dev blog.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

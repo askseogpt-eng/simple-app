@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} – Fixly.dev Blog{% endblock %}
+
+{% block hero %}
+<section class="hero hero--blog-detail">
+  <div class="container hero--blog-detail__inner">
+    <p class="eyebrow"><a href="{{ url_for('blog_index') }}" class="hero__breadcrumb">← Fixly.dev blog</a></p>
+    <h1 class="hero__title">{{ post.title }}</h1>
+    <p class="hero__meta">Published {{ post.created_at.strftime('%B %d, %Y') }}</p>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<article class="section section--blog-detail">
+  <div class="container blog-article">
+    {% for paragraph in post.content|paragraphs %}
+      <p>{{ paragraph }}</p>
+    {% endfor %}
+  </div>
+</article>
+{% endblock %}
