@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}Fixly.dev Dashboard – Publish developer tools{% endblock %}
+
+{% block hero %}
+<section class="hero hero--dashboard">
+  <div class="container hero--dashboard__inner">
+    <div>
+      <p class="eyebrow">Creator dashboard</p>
+      <h1 class="hero__title">Publish a tool and see it go live instantly.</h1>
+      <p class="hero__description">Add the title, summary, and long-form content for your tool. Fixly.dev will craft the page and feature it on the catalog.</p>
+    </div>
+    <div class="hero__meta hero__meta--dashboard">
+      <div>
+        <strong>{{ total_tool_count }}</strong>
+        <span>Total tools</span>
+      </div>
+      <div>
+        <strong>{{ published_tool_count }}</strong>
+        <span>Published</span>
+      </div>
+    </div>
+  </div>
+</section>
+  <div class="dashboard__switcher">
+    <span class="dashboard__switcher-current">Manage tools</span>
+    <span aria-hidden="true">•</span>
+    <a class="dashboard__switcher-link" href="{{ admin_posts_url }}">Manage blog</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+<section class="section section--dashboard">
+  <div class="container dashboard">
+    <div class="dashboard__panel">
+      <h2>Publish a new tool</h2>
+      <form method="post" class="form">
+        <label class="form__field">
+          <span>Tool title</span>
+          <input
+            type="text"
+            name="title"
+            placeholder="Launchpad CLI"
+            value="{{ form_data.title }}"
+            required
+          />
+        </label>
+        <label class="form__field">
+          <span>Summary</span>
+          <input
+            type="text"
+            name="summary"
+            placeholder="Describe the value in one sentence"
+            value="{{ form_data.summary }}"
+            required
+          />
+        </label>
+        <label class="form__field">
+          <span>Full content</span>
+          <textarea
+            name="content"
+            rows="8"
+            placeholder="Share onboarding steps, features, and upgrade paths."
+            required
+          >{{ form_data.content }}</textarea>
+        </label>
+        <button class="button button--primary" type="submit">Publish tool</button>
+      </form>
+    </div>
+    <div class="dashboard__panel">
+      <h2>Recently created</h2>
+      {% if tools %}
+        <ul class="dashboard__list">
+          {% for tool in tools %}
+            <li class="dashboard__item">
+              <div>
+                <h3>{{ tool.title }}</h3>
+                <p>{{ tool.summary }}</p>
+                <div class="dashboard__meta">
+                  <span>Updated {{ tool.created_at.strftime('%b %d, %Y') }}</span>
+                  <span>Status: {{ 'Live' if tool.is_published else 'Hidden' }}</span>
+                </div>
+              </div>
+              <div class="dashboard__actions">
+                <a
+                  class="button button--ghost{% if not tool.is_published %} button--disabled{% endif %}"
+                  href="{{ url_for('tool_detail', slug=tool.slug) }}"
+                  {% if not tool.is_published %}aria-disabled="true" tabindex="-1"{% endif %}
+                >
+                  View
+                </a>
+                <form method="post" action="{{ url_for('toggle_tool', tool_id=tool.id) }}">
+                  <button type="submit" class="button button--secondary">
+                    {% if tool.is_published %}Hide{% else %}Publish{% endif %}
+                  </button>
+                </form>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="empty-state empty-state--dashboard">
+          <h3>No tools yet.</h3>
+          <p>Create your first tool to populate the catalog on the Fixly.dev homepage.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ tool.title }} – Fixly.dev{% endblock %}
+
+{% block hero %}
+<section class="hero hero--detail">
+  <div class="container hero--detail__inner">
+    <a class="back-link" href="{{ url_for('index') }}">← Back to catalog</a>
+    <h1 class="hero__title">{{ tool.title }}</h1>
+    <p class="hero__description">{{ tool.summary }}</p>
+    <div class="hero__meta">
+      <span>Published {{ tool.created_at.strftime('%B %d, %Y') }}</span>
+      <span>Hosted on {{ brand_domain }}</span>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="section section--article">
+  <div class="container article-body">
+    {% for paragraph in tool.content|paragraphs %}
+      <p>{{ paragraph }}</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta cta--detail">
+  <div class="container cta__inner">
+    <div>
+      <p class="eyebrow">Share Fixly.dev</p>
+      <h2>Bring your developer ecosystem to life.</h2>
+      <p>Publish more tools, craft guided journeys, and keep everything discoverable in one place.</p>
+    </div>
+    <a class="button button--primary" href="{{ admin_tools_url }}">Open dashboard</a>
+  </div>
+</section>
+{% endblock %}
