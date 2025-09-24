@@ -1,0 +1,82 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__cta">
+    <div class="site-footer__cta-text">
+      <h2>Build, launch, and scale your dev platform faster.</h2>
+      <p>Compose 400+ modular tools, automate onboarding, and ship customer experiences in record time.</p>
+    </div>
+    <div class="site-footer__cta-actions">
+      <a class="button button--primary" href="{{ cta_url|default('#start') }}">Book a strategy call</a>
+      <a class="button button--ghost" href="{{ docs_url|default('#docs') }}">Explore documentation</a>
+    </div>
+  </div>
+
+  <div class="site-footer__grid">
+    <div class="site-footer__brand">
+      <a class="brand brand--footer" href="{{ brand_url|default('/') }}">
+        <span class="brand__mark" aria-hidden="true">⌘</span>
+        <span class="brand__text">{{ brand_name|default('DevSuite') }}</span>
+      </a>
+      <p class="site-footer__description">
+        A unified developer experience platform bringing best-in-class authentication, billing, observability,
+        and automation tooling together.
+      </p>
+      <div class="site-footer__social">
+        <a href="{{ twitter_url|default('#') }}" aria-label="Twitter">Twitter</a>
+        <a href="{{ github_url|default('#') }}" aria-label="GitHub">GitHub</a>
+        <a href="{{ linkedin_url|default('#') }}" aria-label="LinkedIn">LinkedIn</a>
+      </div>
+      <p class="site-footer__status">Live platform status: <span class="status-indicator status-indicator--success">All systems operational</span></p>
+    </div>
+
+    <div class="site-footer__column">
+      <h3>Product</h3>
+      <ul>
+        <li><a href="{{ roadmap_url|default('#roadmap') }}">Roadmap</a></li>
+        <li><a href="{{ integrations_url|default('#integrations') }}">Integrations</a></li>
+        <li><a href="{{ api_url|default('#api') }}">API Reference</a></li>
+        <li><a href="{{ changelog_url|default('#changelog') }}">Changelog</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__column">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="{{ blog_url|default('#blog') }}">Insights Blog</a></li>
+        <li><a href="{{ webinar_url|default('#webinars') }}">Workshops &amp; Webinars</a></li>
+        <li><a href="{{ support_url|default('#support') }}">Support Center</a></li>
+        <li><a href="{{ community_url|default('#community') }}">Community Slack</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__column">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="{{ about_url|default('#about') }}">About</a></li>
+        <li><a href="{{ careers_url|default('#careers') }}">Careers</a></li>
+        <li><a href="{{ partners_url|default('#partners') }}">Partners</a></li>
+        <li><a href="{{ press_url|default('#press') }}">Press Kit</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__column site-footer__column--newsletter">
+      <h3>Developer updates</h3>
+      <p>Subscribe for launch breakdowns, architecture deep-dives, and field notes from teams shipping with DevSuite.</p>
+      <form class="site-footer__form" action="{{ newsletter_action|default('#') }}" method="post">
+        <label class="sr-only" for="newsletter-email">Email address</label>
+        <input id="newsletter-email" type="email" name="email" placeholder="you@example.com" required />
+        <button class="button button--primary" type="submit">Join newsletter</button>
+      </form>
+      <p class="site-footer__guarantee">No spam. Cancel anytime.</p>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <p>© {{ current_year|default(2024) }} {{ brand_name|default('DevSuite') }}. Made for teams shipping reliable developer experiences.</p>
+    <div class="site-footer__policies">
+      <a href="{{ privacy_url|default('#privacy') }}">Privacy</a>
+      <a href="{{ terms_url|default('#terms') }}">Terms</a>
+      <a href="{{ security_url|default('#security') }}">Security</a>
+      <a href="{{ accessibility_url|default('#accessibility') }}">Accessibility</a>
+    </div>
+  </div>
+</footer>

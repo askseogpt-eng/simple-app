@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A scalable suite of 400+ developer tools for building SaaS products faster." />
+    <title>{% block title %}DevSuite – 400+ SaaS Dev Tools{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="page">
+    <a class="skip-link" href="#content">Skip to content</a>
+    {% include 'partials/_header.html' %}
+    <main id="content" class="page__content" tabindex="-1">
+      {% block hero %}{% endblock %}
+      {% block content %}{% endblock %}
+    </main>
+    {% include 'partials/_footer.html' %}
+    <script src="{{ url_for('static', filename='js/navigation.js') }}" defer></script>
+    {% block extra_scripts %}{% endblock %}
+  </body>
+</html>
