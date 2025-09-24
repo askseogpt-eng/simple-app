@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+
+{% block title %}Fixly.dev – The SaaS launchpad for developer tools{% endblock %}
+
+{% block hero %}
+<section class="hero">
+  <div class="container hero__grid">
+    <div class="hero__content">
+      <p class="eyebrow">The Fixly.dev control center</p>
+      <h1 class="hero__title">Design, launch, and scale 400+ developer tools in one beautiful workspace.</h1>
+      <p class="hero__description">
+        Fixly.dev bundles content publishing, documentation, billing, status pages, and AI copilots so your next tool is live
+        in minutes. Publish from the dashboard and your tool instantly appears on the public catalog.
+      </p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="{{ admin_tools_url }}">Publish a tool</a>
+        <a class="button button--ghost" href="#platform">Explore the platform</a>
+      </div>
+      <dl class="hero__stats">
+        <div>
+          <dt>Tools orchestrated</dt>
+          <dd>400+</dd>
+        </div>
+        <div>
+          <dt>Average go-live time</dt>
+          <dd>9 minutes</dd>
+        </div>
+        <div>
+          <dt>Teams building today</dt>
+          <dd>28k+</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="hero__media">
+      <div class="dashboard-card">
+        <header class="dashboard-card__header">
+          <span class="dashboard-card__eyebrow">fixly.dev/dashboard</span>
+          <strong>Tool publishing</strong>
+        </header>
+        <ul class="dashboard-card__list">
+          {% if tools %}
+            {% for tool in tools[:4] %}
+              <li>
+                <span class="dashboard-card__status">Live</span>
+                <span class="dashboard-card__name">{{ tool.title }}</span>
+                <span class="dashboard-card__cta">{{ tool.created_at.strftime('%b %d') }}</span>
+              </li>
+            {% endfor %}
+          {% else %}
+            <li>
+              <span class="dashboard-card__status">Ready</span>
+              <span class="dashboard-card__name">Create your first tool</span>
+              <span class="dashboard-card__cta">Start</span>
+            </li>
+            <li>
+              <span class="dashboard-card__status">Guide</span>
+              <span class="dashboard-card__name">Click “Publish a tool”</span>
+              <span class="dashboard-card__cta">→</span>
+            </li>
+          {% endif %}
+        </ul>
+        <footer class="dashboard-card__footer">
+          <span>Automations on</span>
+          <strong>Fixly.dev</strong>
+        </footer>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="section" id="tools">
+  <div class="container">
+    <div class="section__intro">
+      <p class="eyebrow">Tool catalog</p>
+      <h2 class="section__title">Every published tool gets a polished landing page instantly.</h2>
+      <p class="section__description">
+        Showcase onboarding checklists, embed documentation, and share demos without touching a CMS. Tools you publish from the
+        dashboard are automatically organized here for developers to explore.
+      </p>
+    </div>
+    {% if tools %}
+      <div class="tool-grid">
+        {% for tool in tools %}
+          <article class="tool-card">
+            <header>
+              <h3>{{ tool.title }}</h3>
+              <span class="tool-card__badge">Live</span>
+            </header>
+            <p>{{ tool.summary }}</p>
+            <div class="tool-card__meta">
+              <span>Updated {{ tool.created_at.strftime('%b %d, %Y') }}</span>
+            </div>
+            <a class="tool-card__link" href="{{ url_for('tool_detail', slug=tool.slug) }}">Open tool →</a>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <h3>No tools yet — but the stage is set.</h3>
+        <p>Publish from the dashboard and your launch-ready page will appear in this catalog automatically.</p>
+        <a class="button button--primary" href="{{ admin_tools_url }}">Create your first tool</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section section--accent" id="platform">
+  <div class="container">
+    <div class="section__intro">
+      <p class="eyebrow">Platform map</p>
+      <h2 class="section__title">A unified control plane for developer success.</h2>
+      <p class="section__description">
+        Fixly.dev pairs your tools with billing, analytics, documentation, and community experiences that feel handcrafted for every
+        customer.
+      </p>
+    </div>
+    <div class="feature-mosaic">
+      <article class="feature-tile">
+        <h3>Visual editor</h3>
+        <p>Compose hero sections, highlights, and launch notes without a single line of CSS.</p>
+      </article>
+      <article class="feature-tile">
+        <h3>Usage intelligence</h3>
+        <p>Understand activation funnels, retention, and team adoption with real-time dashboards.</p>
+      </article>
+      <article class="feature-tile">
+        <h3>Billing ready</h3>
+        <p>Connect Stripe or Paddle in one click and start charging for premium automations.</p>
+      </article>
+      <article class="feature-tile">
+        <h3>White-label docs</h3>
+        <p>Deploy documentation portals, changelogs, and SDK guides under your Fixly.dev domain.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="automation">
+  <div class="container">
+    <div class="section__intro">
+      <p class="eyebrow">Automation studio</p>
+      <h2 class="section__title">Let AI copilots personalize each developer's experience.</h2>
+      <p class="section__description">
+        Give builders a concierge that understands their stack, autocompletes configuration, and keeps every workflow humming.
+      </p>
+    </div>
+    <div class="automation-grid">
+      <article class="automation-card">
+        <h3>Blueprint generator</h3>
+        <p>Feed Fixly.dev a few prompts and instantly receive a branded tool page with copy, CTA, and visuals.</p>
+      </article>
+      <article class="automation-card">
+        <h3>Guided onboarding</h3>
+        <p>Deliver interactive walkthroughs tailored to language, framework, and compliance requirements.</p>
+      </article>
+      <article class="automation-card">
+        <h3>Lifecycle nudges</h3>
+        <p>Trigger in-app tips, emails, and Slack alerts whenever teams hit milestones inside your tools.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--pricing" id="pricing">
+  <div class="container">
+    <div class="section__intro">
+      <p class="eyebrow">Pricing plans</p>
+      <h2 class="section__title">Start free, launch faster.</h2>
+      <p class="section__description">Simple tiers that scale with every new tool you offer on Fixly.dev.</p>
+    </div>
+    <div class="pricing-grid">
+      <article class="pricing-card">
+        <h3>Starter</h3>
+        <p class="pricing-card__price">$0</p>
+        <ul>
+          <li>Publish unlimited free tools</li>
+          <li>Hosted on fixly.dev</li>
+          <li>Community analytics</li>
+        </ul>
+        <a class="button button--ghost" href="{{ admin_tools_url }}">Launch now</a>
+      </article>
+      <article class="pricing-card pricing-card--featured">
+        <h3>Scale</h3>
+        <p class="pricing-card__price">$129<span>/mo</span></p>
+        <ul>
+          <li>Custom domains & SSO</li>
+          <li>Advanced automation studio</li>
+          <li>Usage-based billing integrations</li>
+        </ul>
+        <a class="button button--primary" href="#demo">Book a demo</a>
+      </article>
+      <article class="pricing-card">
+        <h3>Enterprise</h3>
+        <p class="pricing-card__price">Let's talk</p>
+        <ul>
+          <li>Dedicated success engineer</li>
+          <li>Audit trails & compliance suite</li>
+          <li>Private AI model hosting</li>
+        </ul>
+        <a class="button button--ghost" href="#support">Contact us</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="demo">
+  <div class="container cta__inner">
+    <div>
+      <p class="eyebrow">Ready to ship?</p>
+      <h2>Showcase your next developer experience on {{ brand_domain }} today.</h2>
+      <p>Create, personalize, and launch your automations in under ten minutes with the Fixly.dev dashboard.</p>
+    </div>
+    <a class="button button--primary" href="{{ admin_tools_url }}">Open the dashboard</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Fixly.dev is the SaaS control center for shipping 400+ developer automation tools with beautiful dashboards and instant deployments."
+    />
+    <title>{% block title %}Fixly.dev – Build a galaxy of developer tools{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="page">
+    <a class="skip-link" href="#content">Skip to content</a>
+    {% include 'partials/_header.html' %}
+    <main id="content" class="page__content" tabindex="-1">
+      {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+          <div class="flash-region" role="status" aria-live="polite">
+            {% for category, message in messages %}
+              <div class="flash flash--{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      {% block hero %}{% endblock %}
+      {% block content %}{% endblock %}
+    </main>
+    {% include 'partials/_footer.html' %}
+    <script src="{{ url_for('static', filename='js/navigation.js') }}" defer></script>
+    {% block extra_scripts %}{% endblock %}
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<header class="site-header" role="banner">
+  <div class="site-header__inner container">
+    <a class="brand" href="{{ brand_url }}">
+      <span class="brand__mark" aria-hidden="true">⚡</span>
+      <span class="brand__text">
+        {{ brand_name }}
+        <span class="brand__subtext">{{ brand_tagline }}</span>
+      </span>
+    </a>
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+    >
+      <span class="nav-toggle__label">Menu</span>
+      <span class="nav-toggle__icon" aria-hidden="true"><span></span></span>
+    </button>
+    <nav id="primary-navigation" class="primary-nav" aria-label="Main navigation">
+      <ul class="primary-nav__list">
+        <li class="primary-nav__item"><a href="#tools" class="primary-nav__link">Tools</a></li>
+        <li class="primary-nav__item"><a href="#platform" class="primary-nav__link">Platform</a></li>
+        <li class="primary-nav__item"><a href="#automation" class="primary-nav__link">Automation</a></li>
+        <li class="primary-nav__item"><a href="#pricing" class="primary-nav__link">Pricing</a></li>
+        <li class="primary-nav__item"><a href="#support" class="primary-nav__link">Support</a></li>
+      </ul>
+      <div class="primary-nav__cta">
+        <a class="primary-nav__link primary-nav__link--muted" href="{{ admin_tools_url }}">Dashboard</a>
+        <a class="button button--primary" href="#demo">Launch Fixly</a>
+      </div>
+    </nav>
+  </div>
+  <div class="site-header__announcement" role="presentation">
+    <div class="container site-header__announcement-inner">
+      <p class="site-header__announcement-text">
+        Fixly.dev now orchestrates full-stack developer portals across cloud, data, and AI teams.
+      </p>
+      <a class="site-header__announcement-link" href="#changelog">See what's new →</a>
+    </div>
+  </div>
+</header>
