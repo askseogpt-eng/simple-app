@@ -1,0 +1,72 @@
+<header class="site-header" role="banner">
+  <div class="site-header__top">
+    <div class="site-header__top-inner">
+      <span class="site-header__badge">New</span>
+      <p class="site-header__announcement">
+        Launch, monitor, and scale <strong>400+ developer tools</strong> with unified billing and usage analytics.
+      </p>
+      <a class="site-header__top-link" href="{{ announcement_url|default('#') }}">See what shipped this week →</a>
+    </div>
+  </div>
+  <div class="site-header__nav">
+    <div class="site-header__brand">
+      <a class="brand" href="{{ brand_url|default('/') }}">
+        <span class="brand__mark" aria-hidden="true">⌘</span>
+        <span class="brand__text">
+          {{ brand_name|default('DevSuite') }}
+          <span class="brand__subtext">Developer Experience Platform</span>
+        </span>
+      </a>
+    </div>
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+    >
+      <span class="nav-toggle__label">Menu</span>
+      <span class="nav-toggle__icon" aria-hidden="true"></span>
+    </button>
+    <nav id="primary-navigation" class="primary-nav" aria-label="Main navigation">
+      <ul class="primary-nav__list">
+        <li class="primary-nav__item">
+          <a href="{{ solutions_url|default('#solutions') }}" class="primary-nav__link">Solutions</a>
+        </li>
+        <li class="primary-nav__item">
+          <a href="{{ pricing_url|default('#pricing') }}" class="primary-nav__link">Pricing</a>
+        </li>
+        <li class="primary-nav__item">
+          <a href="{{ docs_url|default('#docs') }}" class="primary-nav__link">Documentation</a>
+        </li>
+        <li class="primary-nav__item">
+          <a href="{{ showcase_url|default('#showcase') }}" class="primary-nav__link">Showcase</a>
+        </li>
+        <li class="primary-nav__item">
+          <a href="{{ blog_url|default('#blog') }}" class="primary-nav__link">Resources</a>
+        </li>
+      </ul>
+      <div class="primary-nav__cta">
+        <a class="primary-nav__link primary-nav__link--muted" href="{{ login_url|default('#login') }}">Sign in</a>
+        <a class="button button--primary" href="{{ cta_url|default('#start') }}">Start building</a>
+      </div>
+    </nav>
+  </div>
+  <div class="site-header__metrics" role="presentation">
+    <div class="metric">
+      <span class="metric__value">400+</span>
+      <span class="metric__label">Modular dev tools</span>
+    </div>
+    <div class="metric">
+      <span class="metric__value">99.99%</span>
+      <span class="metric__label">Platform uptime</span>
+    </div>
+    <div class="metric">
+      <span class="metric__value">7 min</span>
+      <span class="metric__label">Average setup time</span>
+    </div>
+    <div class="metric">
+      <span class="metric__value">120k+</span>
+      <span class="metric__label">Developers building daily</span>
+    </div>
+  </div>
+</header>

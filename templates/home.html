@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}DevSuite – Launch 400+ Developer Tools as a Service{% endblock %}
+
+{% block hero %}
+<section class="page-section">
+  <div class="page-section__eyebrow">Developer platform</div>
+  <h1 class="page-section__title">Ship a complete SaaS toolkit in days, not months.</h1>
+  <p class="page-section__description">
+    Assemble authentication, billing, analytics, code quality checks, AI copilots, and delivery pipelines with prebuilt
+    modules designed for developer experience teams.
+  </p>
+  <div class="page-section__actions">
+    <a class="button button--primary" href="#start">Start your free build</a>
+    <a class="button button--ghost" href="#demo">Watch 3-minute demo</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="page-section page-section--alt">
+  <div class="page-section__eyebrow">Why teams choose DevSuite</div>
+  <h2 class="page-section__title">Orchestrate 400+ dev tools with unified governance.</h2>
+  <p class="page-section__description">
+    Connect best-in-class services with a single control plane. Stream metrics to your observability stack, automate
+    compliance with policy-as-code, and give every developer self-service environments they can trust.
+  </p>
+  <div class="feature-grid">
+    <article class="feature-card">
+      <h3 class="feature-card__title">Composable toolchains</h3>
+      <p class="feature-card__description">
+        Drag-and-drop workflows that wire up testing, security scanning, deployment, and incident response with minimal
+        YAML.
+      </p>
+    </article>
+    <article class="feature-card">
+      <h3 class="feature-card__title">Usage-based intelligence</h3>
+      <p class="feature-card__description">
+        Real-time dashboards surface adoption, performance, and spend across every tool—no more duct-taped spreadsheets.
+      </p>
+    </article>
+    <article class="feature-card">
+      <h3 class="feature-card__title">Enterprise guardrails</h3>
+      <p class="feature-card__description">
+        Enforce SOC 2, ISO, and GDPR controls across internal and customer-facing tools with built-in audits and drift
+        detection.
+      </p>
+    </article>
+  </div>
+</section>
+{% endblock %}
